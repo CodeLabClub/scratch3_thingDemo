@@ -1,5 +1,5 @@
 /*
-使用scratch ui连接， 派生自thingDemo
+使用scratch ui连接， 派生自 thingDemo
 
 测试插件，方便做各种测试
 
@@ -21,9 +21,10 @@ const menuIconURI = blockIconURI;
  * @enum {string}
  */
 
-const NODE_NAME = "node_thingDemo";
+const SCRATCH_EXT_ID = "thingDemo"; //vm gui 与此一致
+const NODE_NAME = `node_${SCRATCH_EXT_ID}`;
 const NODE_ID = `eim/${NODE_NAME}`;
-const HELP_URL = "https://adapter.codelab.club/extension_guide/thingDemo/";
+const HELP_URL = `https://adapter.codelab.club/extension_guide/${SCRATCH_EXT_ID}/`;
 
 // 翻译
 const FormHelp = {
@@ -103,7 +104,7 @@ class AdapterClient {
         let list_timeout = 10000;
         // 生成 UI 类
         this.ScratchUIHelper = new ScratchUIHelper(
-            "robomasterep2",
+            SCRATCH_EXT_ID,
             NODE_NAME,
             NODE_ID,
             runtime,
@@ -123,8 +124,7 @@ class AdapterClient {
 
 class Scratch3ThingDemoBlocks {
     constructor(runtime) {
-        this._runtime = runtime;
-        this._runtime.registerPeripheralExtension("thingDemo", this);
+        runtime.registerPeripheralExtension(SCRATCH_EXT_ID, this);
         this.client = new AdapterClient(NODE_ID, HELP_URL, runtime);
     }
 
@@ -151,7 +151,7 @@ class Scratch3ThingDemoBlocks {
      * @type {string}
      */
     static get STATE_KEY() {
-        return "Scratch.thingDemo";
+        return `Scratch.${SCRATCH_EXT_ID}`;
     }
 
 
@@ -176,7 +176,7 @@ class Scratch3ThingDemoBlocks {
     getInfo() {
         let the_locale = this._setLocale();
         return {
-            id: "thingDemo",
+            id: SCRATCH_EXT_ID,
             name: "Thing Demo",
             colour: "#ff641d",
             colourSecondary: "#c94f18",
