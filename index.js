@@ -24,6 +24,7 @@ const menuIconURI = blockIconURI;
 const SCRATCH_EXT_ID = "thingDemo"; //vm gui 与此一致
 const NODE_NAME = `node_${SCRATCH_EXT_ID}`;
 const NODE_ID = `eim/${NODE_NAME}`;
+const NODE_MIN_VERSION = "1.0.0"; //node最低版本， 依赖
 const HELP_URL = `https://adapter.codelab.club/extension_guide/${SCRATCH_EXT_ID}/`;
 
 // 翻译
@@ -107,6 +108,7 @@ class AdapterClient {
             SCRATCH_EXT_ID,
             NODE_NAME,
             NODE_ID,
+            NODE_MIN_VERSION,
             runtime,
             this.adapter_base_client,
             list_timeout
